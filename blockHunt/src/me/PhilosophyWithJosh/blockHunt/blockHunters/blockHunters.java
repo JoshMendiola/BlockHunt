@@ -30,7 +30,7 @@ public class blockHunters implements Listener
 	{
 		blockhunters.add(p);
 		ranBlocks.add(null);
-		success.add(false);
+		success.add(true);
 	}
 	
 	public static void removePlayer(Player p)

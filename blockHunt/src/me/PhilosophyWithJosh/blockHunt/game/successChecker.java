@@ -12,6 +12,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
 import me.PhilosophyWithJosh.blockHunt.commands.startBlockHunt;
+import me.PhilosophyWithJosh.blockHunt.utils.utils;
 
 
 public class successChecker implements Listener
@@ -35,9 +36,10 @@ private Main plugin;
 				Block b = loc.getBlock();
 
 				//Whatever Material you want
-				if(b.getType() == blockHunters.ranBlockValue(blockHunters.getIndex(bh)))
+				if(b.getType() == blockHunters.ranBlockList(blockHunters.getIndex(bh)))
 				{
 					blockHunters.setSuccess(bh, true);
+					Bukkit.broadcastMessage(utils.chat("&c" + bh.getName() + " found their block in time"));
 				}
 			}
 		}
