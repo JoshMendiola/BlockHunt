@@ -20,7 +20,7 @@ public class startBlockHunt implements CommandExecutor
 	private static boolean gamerunning = false;
 	private static ArrayList<Material> blocks = new ArrayList<Material>();
 	
-	public startBlockHunt()
+	public startBlockHunt(Main plugin)
 	{
 		this.plugin = plugin;
 		plugin.getCommand("startblockhunt").setExecutor(this);

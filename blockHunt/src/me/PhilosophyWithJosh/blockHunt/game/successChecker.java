@@ -35,7 +35,6 @@ private Main plugin;
 				Location loc = bh.getPlayer().getLocation().clone().subtract(0, 1, 0);
 				Block b = loc.getBlock();
 
-				//Whatever Material you want
 				if(b.getType() == blockHunters.ranBlockList(blockHunters.getIndex(bh)))
 				{
 					blockHunters.setSuccess(bh, true);
