@@ -1,7 +1,7 @@
-name: block hunt
+name: blockHunt
 author: PhilosophyWithJosh
 version: 1.6.0
-main: me.PhilosophyWithJosh.blockhunt.Main
+main: me.PhilosophyWithJosh.blockHunt.Main
 description: my take on dreams block hunt
 commands:
   beblockhunter:

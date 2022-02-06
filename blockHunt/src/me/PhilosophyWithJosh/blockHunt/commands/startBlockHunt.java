@@ -40,6 +40,8 @@ public class startBlockHunt implements CommandExecutor
 				@Override
 	            public void run()
 	            {
+					setUp();
+					gamerunning = true;
 					for(int x = 0; x < blockHunters.blockHunterList().size();x++)
 					 {
 						Player bh = blockHunters.blockHunterList(x);
@@ -55,7 +57,6 @@ public class startBlockHunt implements CommandExecutor
 							blockHunters.setSuccess(bh, false);
 						}
 					 }
-					setUp();
 	            }
 			}.runTaskLater(this.plugin, 6000);
 		}
