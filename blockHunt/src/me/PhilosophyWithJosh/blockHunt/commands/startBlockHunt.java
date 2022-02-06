@@ -52,23 +52,30 @@ public class startBlockHunt implements CommandExecutor
 				@Override
 	            public void run()
 	            {
-					for(int x = 0; x < blockHunters.blockHunterList().size();x++)
-					 {
-						Player bh = blockHunters.blockHunterList(x);
-						if(!blockHunters.getSuccess(bh))
-						{
-							 bh.setHealth(0.0);
-							 Bukkit.broadcastMessage(utils.chat("&c" + bh.getName() + " &7has failed and died"));
-							 blockHunters.removePlayer(bh);
-						}
-						else
-						{
-							blockHunters.setSuccess(bh, false);
-						}
-					 }
-					Bukkit.broadcastMessage(utils.chat("&eThe next round is now starting"));
-					blockHunters.clearBlocks();
-					setUp();
+					if(blockHunters.blockHunterList().size() > 0)
+					{
+						for(int x = 0; x < blockHunters.blockHunterList().size();x++)
+						 {
+							Player bh = blockHunters.blockHunterList(x);
+							if(!blockHunters.getSuccess(bh))
+							{
+								 bh.setHealth(0.0);
+								 Bukkit.broadcastMessage(utils.chat("&c" + bh.getName() + " &7has failed and died"));
+								 blockHunters.removePlayer(bh);
+							}
+							else
+							{
+								blockHunters.setSuccess(bh, false);
+							}
+						 }
+						Bukkit.broadcastMessage(utils.chat("&eThe next round is now starting"));
+						blockHunters.clearBlocks();
+						setUp();
+					}
+					else
+					{
+						Bukkit.broadcastMessage(utils.chat("&cThe game cannot start/continue with no players"));
+					}
 	            }
 			},6000L, 6000L);
 		}
