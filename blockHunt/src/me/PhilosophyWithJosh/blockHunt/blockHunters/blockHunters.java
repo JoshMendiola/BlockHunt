@@ -29,8 +29,6 @@ public class blockHunters implements Listener
 	public static void addPlayer(Player p)
 	{
 		blockhunters.add(p);
-		ranBlocks.add(null);
-		success.add(true);
 	}
 	
 	public static void removePlayer(Player p)
@@ -73,6 +71,11 @@ public class blockHunters implements Listener
 	{
 		int index = blockhunters.indexOf(p);
 		return success.get(index);
+	}
+	
+	public static void addSuccess(boolean b)
+	{
+		success.add(b);
 	}
 	
 	public static int getIndex(Player p)

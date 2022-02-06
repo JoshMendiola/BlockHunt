@@ -9,7 +9,9 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitScheduler;
 
 import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
@@ -23,6 +25,13 @@ public class startBlockHunt implements CommandExecutor
 	public startBlockHunt(Main plugin)
 	{
 		this.plugin = plugin;
+		for (Material block : Material.values()) 
+		{
+			if (block.isBlock()) 
+			{
+				blocks.add(block);
+			}
+		}
 		plugin.getCommand("startblockhunt").setExecutor(this);
 	}
 	
@@ -35,21 +44,21 @@ public class startBlockHunt implements CommandExecutor
 		}
 		else
 		{
-			new BukkitRunnable()
+			setUp();
+			Bukkit.broadcastMessage("The game is now starting");
+			gamerunning = true;
+	        Bukkit.getScheduler().scheduleSyncRepeatingTask(this.plugin, new Runnable() 
 			{
 				@Override
 	            public void run()
 	            {
-					setUp();
-					gamerunning = true;
 					for(int x = 0; x < blockHunters.blockHunterList().size();x++)
 					 {
 						Player bh = blockHunters.blockHunterList(x);
-						blockHunters.clearBlocks();
 						if(!blockHunters.getSuccess(bh))
 						{
 							 bh.setHealth(0.0);
-							 Bukkit.broadcastMessage(utils.chat("&c" + bh.getName() + " has failed and died"));
+							 Bukkit.broadcastMessage(utils.chat("&c" + bh.getName() + " &7has failed and died"));
 							 blockHunters.removePlayer(bh);
 						}
 						else
@@ -57,31 +66,23 @@ public class startBlockHunt implements CommandExecutor
 							blockHunters.setSuccess(bh, false);
 						}
 					 }
+					Bukkit.broadcastMessage(utils.chat("&eThe next round is now starting"));
+					blockHunters.clearBlocks();
+					setUp();
 	            }
-			}.runTaskLater(this.plugin, 6000);
+			},6000L, 6000L);
 		}
-		return false;
+		return true;
 	}
 	
 	public void setUp()
 	{
-	 	for (Material block : Material.values()) 
-		{
-			if (block.isBlock()) 
-			{
-				blocks.add(block);
-			}
-		}
 		for(int x = 0; x < blockHunters.blockHunterList().size();x++)
 		{
 			Material randomBlock = blocks.get(new Random().nextInt(blocks.size()));
 			blockHunters.addBlock(randomBlock);
-		}
-			
-		//assigns every player a block
-		for(int x = 0; x < blockHunters.blockHunterList().size();x++)
-		{
 			Player bh = blockHunters.blockHunterList(x);
+			blockHunters.addSuccess(false);
 			bh.sendMessage(utils.chat("&eYour assigned block is " + blockHunters.ranBlockList(x)));
 		}
 	}
