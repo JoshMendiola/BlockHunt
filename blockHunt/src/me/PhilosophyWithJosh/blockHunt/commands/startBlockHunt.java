@@ -21,6 +21,7 @@ public class startBlockHunt implements CommandExecutor
 	private Main plugin;
 	private static boolean gamerunning = false;
 	private static ArrayList<Material> blocks = new ArrayList<Material>();
+	public static int id = 0;
 	
 	public startBlockHunt(Main plugin)
 	{
@@ -47,8 +48,8 @@ public class startBlockHunt implements CommandExecutor
 			setUp();
 			Bukkit.broadcastMessage("The game is now starting");
 			gamerunning = true;
-	        Bukkit.getScheduler().scheduleSyncRepeatingTask(this.plugin, new Runnable() 
-			{
+	        new BukkitRunnable()
+	        {
 				@Override
 	            public void run()
 	            {
@@ -68,6 +69,12 @@ public class startBlockHunt implements CommandExecutor
 								blockHunters.setSuccess(bh, false);
 							}
 						 }
+						if(blockHunters.blockHunterList().size() == 1)
+						{
+							Player winner =blockHunters.blockHunterList(0);
+							Bukkit.broadcastMessage(utils.chat("&a" + winner.getName() + "&7 has won BlockHunt !"));
+							this.cancel();
+						}
 						Bukkit.broadcastMessage(utils.chat("&eThe next round is now starting"));
 						blockHunters.clearBlocks();
 						setUp();
@@ -77,7 +84,7 @@ public class startBlockHunt implements CommandExecutor
 						Bukkit.broadcastMessage(utils.chat("&cThe game cannot start/continue with no players"));
 					}
 	            }
-			},6000L, 6000L);
+			}.runTaskTimer(plugin, 6000L, 6000L);
 		}
 		return true;
 	}
