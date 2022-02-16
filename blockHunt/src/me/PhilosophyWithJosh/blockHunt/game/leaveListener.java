@@ -25,6 +25,11 @@ private Main plugin;
 		{
 			Bukkit.broadcastMessage(utils.chat("&c" + e.getPlayer().getName() + "&7 is no longer playing blockhunt"));
 			blockHunters.removePlayer(e.getPlayer());
+			if(blockHunters.blockHunterList().isEmpty())
+			{
+				Bukkit.broadcastMessage(utils.chat("&cThe game has ended as there are no more players"));
+				
+			}
 		}
 	}
 }

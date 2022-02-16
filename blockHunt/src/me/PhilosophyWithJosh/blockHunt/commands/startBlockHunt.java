@@ -12,9 +12,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scheduler.BukkitTask;
 
 import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
+import me.PhilosophyWithJosh.blockHunt.game.gameRunner;
 import me.PhilosophyWithJosh.blockHunt.utils.utils;
 public class startBlockHunt implements CommandExecutor
 {
@@ -22,6 +24,7 @@ public class startBlockHunt implements CommandExecutor
 	private static boolean gamerunning = false;
 	private static ArrayList<Material> blocks = new ArrayList<Material>();
 	public static int id = 0;
+	public static BukkitTask minigame;
 	
 	public startBlockHunt(Main plugin)
 	{
@@ -36,14 +39,29 @@ public class startBlockHunt implements CommandExecutor
 			sender.sendMessage(utils.chat("&cERROR: &7Can not start game, as game is already running"));
 			return false;
 		}
-		else
+		else if (blockHunters.blockHunterList().isEmpty())
 		{
-			
+			sender.sendMessage(utils.chat("&cERROR: &7Can not start game, as there are no blockhunters"));
+			return false;
 		}
+		gamerunning = true;
+		setUp();
+		minigame = new gameRunner(this.plugin).runTaskTimer(plugin, 6000L, 6000L);
 		return true;
 }
 	public static boolean gameRunning()
 	{
 		return gamerunning;
+	}
+	public void setUp()
+	{
+		for(int x = 0; x < blockHunters.blockHunterList().size();x++)
+		{
+			Material randomBlock = blocks.get(new Random().nextInt(blocks.size()));
+			blockHunters.addBlock(randomBlock);
+			Player bh = blockHunters.blockHunterList(x);
+			blockHunters.addSuccess(false);
+			bh.sendMessage(utils.chat("&eYour assigned block is " + blockHunters.ranBlockList(x)));
+		}
 	}
 }

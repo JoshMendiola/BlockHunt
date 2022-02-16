@@ -6,15 +6,21 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.scheduler.BukkitTask;
 
+import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
 import me.PhilosophyWithJosh.blockHunt.utils.utils;
 
-public class gameRunner implements Runnable
+public class gameRunner extends BukkitRunnable
 {
 	private static ArrayList<Material> blocks = new ArrayList<Material>();
-	public gameRunner()
+	private Main plugin;
+	
+	public gameRunner(Main plugin)
 	{
+		this.plugin = plugin;
 		for (Material block : Material.values()) 
 		{
 			if (block.isBlock()) 
@@ -50,23 +56,10 @@ public class gameRunner implements Runnable
 			}
 			Bukkit.broadcastMessage(utils.chat("&eThe next round is now starting"));
 			blockHunters.clearBlocks();
-			setUp();
 		}
 		else
 		{
 			Bukkit.broadcastMessage(utils.chat("&cThe game cannot start/continue with no players"));
-		}
- }
-	
-	public void setUp()
-	{
-		for(int x = 0; x < blockHunters.blockHunterList().size();x++)
-		{
-			Material randomBlock = blocks.get(new Random().nextInt(blocks.size()));
-			blockHunters.addBlock(randomBlock);
-			Player bh = blockHunters.blockHunterList(x);
-			blockHunters.addSuccess(false);
-			bh.sendMessage(utils.chat("&eYour assigned block is " + blockHunters.ranBlockList(x)));
 		}
 	}
 }

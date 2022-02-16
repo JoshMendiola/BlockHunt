@@ -1,5 +1,6 @@
 package me.PhilosophyWithJosh.blockHunt.commands;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,6 +28,12 @@ public class leaveBlockHunt implements CommandExecutor
 			{
 				blockHunters.removePlayer((Player)p);
 				p.sendMessage(utils.chat("&bYou are no longer a blockhunter"));
+				if(blockHunters.blockHunterList().isEmpty())
+				{
+					startBlockHunt.minigame.cancel();
+					Bukkit.broadcastMessage(utils.chat("&cThe game has ended as there are no more players"));
+					
+				}
 				return true;
 			}
 			else if(!blockHunters.isBlockHunter(p))
