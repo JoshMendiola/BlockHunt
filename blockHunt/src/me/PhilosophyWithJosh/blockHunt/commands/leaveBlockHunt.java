@@ -24,16 +24,16 @@ public class leaveBlockHunt implements CommandExecutor
 		if( sender instanceof Player)
 		{
 			Player p = (Player)sender;
-			if (blockHunters.isBlockHunter((Player)p) && !startBlockHunt.gameRunning())
+			if (blockHunters.isBlockHunter((Player)p))
 			{
 				blockHunters.removePlayer((Player)p);
 				p.sendMessage(utils.chat("&bYou are no longer a blockhunter"));
+				blockHunters.removePlayer(p.getPlayer());
 				if(blockHunters.blockHunterList().isEmpty())
 				{
 					startBlockHunt.minigame.cancel();
 					startBlockHunt.setGameRunning(false);
-					Bukkit.broadcastMessage(utils.chat("&cThe game has ended as there are no more players"));
-					
+					Bukkit.broadcastMessage(utils.chat("&cThe game has ended as there are no more players"));			
 				}
 				return true;
 			}
@@ -41,11 +41,6 @@ public class leaveBlockHunt implements CommandExecutor
 			{
 				blockHunters.removePlayer(p);
 				p.sendMessage(utils.chat("&7You have to be a blockhunter to leave blockhunt"));
-				return true;
-			}
-			else if(startBlockHunt.gameRunning())
-			{
-				p.sendMessage(utils.chat("&7You cannot leave while a game is running"));
 				return true;
 			}
 		}

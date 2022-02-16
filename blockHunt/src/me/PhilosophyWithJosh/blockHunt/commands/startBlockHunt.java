@@ -51,10 +51,6 @@ public class startBlockHunt implements CommandExecutor
 		setUp();
 		minigame = new gameRunner(this.plugin).runTaskTimer(plugin, 6000L, 6000L);
 		return true;
-}
-	public static boolean gameRunning()
-	{
-		return gamerunning;
 	}
 	public void setUp()
 	{
@@ -71,5 +67,9 @@ public class startBlockHunt implements CommandExecutor
 	public static void setGameRunning(boolean state)
 	{
 		gamerunning = state;
+	}
+	public static boolean gameRunning()
+	{
+		return gamerunning;
 	}
 }
