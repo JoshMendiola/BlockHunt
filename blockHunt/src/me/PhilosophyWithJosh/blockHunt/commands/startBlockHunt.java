@@ -3,15 +3,11 @@ package me.PhilosophyWithJosh.blockHunt.commands;
 import java.util.ArrayList;
 import java.util.Random;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.PhilosophyWithJosh.blockHunt.Main;
@@ -30,6 +26,13 @@ public class startBlockHunt implements CommandExecutor
 	{
 		this.plugin = plugin;
 		plugin.getCommand("startblockhunt").setExecutor(this);
+		for (Material block : Material.values()) 
+		{
+			if (block.isBlock()) 
+			{
+				blocks.add(block);
+			}
+		}
 	}
 	
 	public boolean onCommand(CommandSender sender, Command startblockhunt, String label, String[] args)
@@ -63,5 +66,10 @@ public class startBlockHunt implements CommandExecutor
 			blockHunters.addSuccess(false);
 			bh.sendMessage(utils.chat("&eYour assigned block is " + blockHunters.ranBlockList(x)));
 		}
+	}
+	
+	public static void setGameRunning(boolean state)
+	{
+		gamerunning = state;
 	}
 }

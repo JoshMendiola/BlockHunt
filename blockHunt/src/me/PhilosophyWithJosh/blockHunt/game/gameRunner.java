@@ -21,13 +21,6 @@ public class gameRunner extends BukkitRunnable
 	public gameRunner(Main plugin)
 	{
 		this.plugin = plugin;
-		for (Material block : Material.values()) 
-		{
-			if (block.isBlock()) 
-			{
-				blocks.add(block);
-			}
-		}
 	}
 
 	@Override

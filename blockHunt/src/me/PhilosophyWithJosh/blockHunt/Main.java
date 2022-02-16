@@ -7,6 +7,7 @@ import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
 import me.PhilosophyWithJosh.blockHunt.commands.beBlockHunter;
 import me.PhilosophyWithJosh.blockHunt.commands.leaveBlockHunt;
 import me.PhilosophyWithJosh.blockHunt.commands.startBlockHunt;
+import me.PhilosophyWithJosh.blockHunt.game.gameRunner;
 import me.PhilosophyWithJosh.blockHunt.game.leaveListener;
 import me.PhilosophyWithJosh.blockHunt.game.successChecker;
 
@@ -21,5 +22,6 @@ public class Main extends JavaPlugin
 		new startBlockHunt(this);
 		new successChecker(this);
 		new leaveListener(this);
+		new gameRunner(this);
 	}
 }

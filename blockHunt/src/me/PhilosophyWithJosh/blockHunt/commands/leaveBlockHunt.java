@@ -31,6 +31,7 @@ public class leaveBlockHunt implements CommandExecutor
 				if(blockHunters.blockHunterList().isEmpty())
 				{
 					startBlockHunt.minigame.cancel();
+					startBlockHunt.setGameRunning(false);
 					Bukkit.broadcastMessage(utils.chat("&cThe game has ended as there are no more players"));
 					
 				}
