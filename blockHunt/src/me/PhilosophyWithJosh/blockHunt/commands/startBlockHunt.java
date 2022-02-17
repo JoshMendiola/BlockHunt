@@ -52,8 +52,10 @@ public class startBlockHunt implements CommandExecutor
 		minigame = new gameRunner(this.plugin).runTaskTimer(plugin, 6000L, 6000L);
 		return true;
 	}
-	public void setUp()
+	public static void setUp()
 	{
+		blockHunters.clearBlocks();
+		blockHunters.clearSuccess();
 		for(int x = 0; x < blockHunters.blockHunterList().size();x++)
 		{
 			Material randomBlock = blocks.get(new Random().nextInt(blocks.size()));
@@ -65,11 +67,15 @@ public class startBlockHunt implements CommandExecutor
 	}
 	
 	public static void setGameRunning(boolean state)
-	{
+	{3
 		gamerunning = state;
 	}
 	public static boolean gameRunning()
 	{
 		return gamerunning;
+	}
+	public static void setMinigame(BukkitTask mini)
+	{
+		minigame = mini;
 	}
 }

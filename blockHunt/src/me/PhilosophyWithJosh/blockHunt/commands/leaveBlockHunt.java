@@ -28,7 +28,6 @@ public class leaveBlockHunt implements CommandExecutor
 			{
 				blockHunters.removePlayer((Player)p);
 				p.sendMessage(utils.chat("&bYou are no longer a blockhunter"));
-				blockHunters.removePlayer(p.getPlayer());
 				if(blockHunters.blockHunterList().isEmpty())
 				{
 					startBlockHunt.minigame.cancel();

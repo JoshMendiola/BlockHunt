@@ -1,4 +1,4 @@
-package me.PhilosophyWithJosh.blockHunt.game;
+package me.PhilosophyWithJ.blockHunt.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -13,6 +13,7 @@ import org.bukkit.scheduler.BukkitTask;
 import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
 import me.PhilosophyWithJosh.blockHunt.commands.startBlockHunt;
+import me.PhilosophyWithJosh.blockHunt.game.gameRunner;
 import me.PhilosophyWithJosh.blockHunt.utils.utils;
 
 
@@ -39,7 +40,15 @@ private Main plugin;
 				if(b.getType() == blockHunters.ranBlockList(blockHunters.getIndex(bh)))
 				{
 					blockHunters.setSuccess(bh, true);
-					Bukkit.broadcastMessage(utils.chat("&c" + bh.getName() + " found their block in time"));
+					Bukkit.broadcastMessage(utils.chat("&a" + bh.getName() + "&7 has found their block in time"));
+					if(blockHunters.allPlayersSucceed())
+					{
+						Bukkit.broadcastMessage(utils.chat("&7All blockhunters have found their block"));
+						startBlockHunt.minigame.cancel();
+						startBlockHunt.setUp();
+						BukkitTask minigame = new gameRunner(this.plugin).runTaskTimer(plugin, 6000L, 6000L);
+						startBlockHunt.setMinigame(minigame);
+					}
 				}
 			}
 		}

@@ -78,6 +78,10 @@ public class blockHunters implements Listener
 		success.add(b);
 	}
 	
+	public static void clearSuccess()
+	{
+		success.clear();
+	}
 	public static int getIndex(Player p)
 	{
 		return blockhunters.indexOf(p);
@@ -101,5 +105,17 @@ public class blockHunters implements Listener
 	public static Material ranBlockList(int x)
 	{
 		return ranBlockList().get(x);
+	}
+	
+	public static boolean allPlayersSucceed()
+	{
+		for(int x = 0; x < blockHunterList().size(); x++)
+		{
+			if(getSuccess(blockHunterList(x)) == false)
+			{
+				return false;
+			}
+		}
+		return true;
 	}
 }

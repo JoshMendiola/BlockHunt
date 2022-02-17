@@ -1,4 +1,4 @@
-package me.PhilosophyWithJosh.blockHunt.game;
+package me.PhilosophyWithJ.blockHunt.listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
