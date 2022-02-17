@@ -17,7 +17,7 @@ allows the command sender to leave blockhunt if they no longer wish to play
 ```
 begins the game
 ```bash
-/startsblockhunt
+/startblockhunt
 ```
 ## contributing
 pull request would be more than appreciated, feel free to use as you please. In the case of a major change/bug, please 
