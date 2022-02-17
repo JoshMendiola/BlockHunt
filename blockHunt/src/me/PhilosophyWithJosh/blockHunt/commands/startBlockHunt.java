@@ -67,7 +67,7 @@ public class startBlockHunt implements CommandExecutor
 	}
 	
 	public static void setGameRunning(boolean state)
-	{3
+	{
 		gamerunning = state;
 	}
 	public static boolean gameRunning()
