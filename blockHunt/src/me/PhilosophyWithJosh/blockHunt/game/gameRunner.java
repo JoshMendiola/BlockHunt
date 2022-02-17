@@ -1,21 +1,17 @@
 package me.PhilosophyWithJosh.blockHunt.game;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 
 import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
+import me.PhilosophyWithJosh.blockHunt.commands.startBlockHunt;
 import me.PhilosophyWithJosh.blockHunt.utils.utils;
 
 public class gameRunner extends BukkitRunnable
 {
-	private static ArrayList<Material> blocks = new ArrayList<Material>();
+	@SuppressWarnings("unused")
 	private Main plugin;
 	
 	public gameRunner(Main plugin)
@@ -42,13 +38,22 @@ public class gameRunner extends BukkitRunnable
 					blockHunters.setSuccess(bh, false);
 				}
 			 }
-			if(blockHunters.blockHunterList().size() == 1)
+			if(blockHunters.blockHunterList().size() == 0)
+			{
+				Bukkit.broadcastMessage(utils.chat("&eThe game has ended as everyone failed"));
+				this.cancel();
+				startBlockHunt.setGameRunning(false);
+			}
+			else if(blockHunters.blockHunterList().size() == 1)
 			{
 				Player winner =blockHunters.blockHunterList(0);
 				Bukkit.broadcastMessage(utils.chat("&a" + winner.getName() + "&7 has won BlockHunt !"));
 			}
-			Bukkit.broadcastMessage(utils.chat("&eThe next round is now starting"));
-			blockHunters.clearBlocks();
+			else if(blockHunters.blockHunterList().size() > 1)
+			{
+				Bukkit.broadcastMessage(utils.chat("&eThe next round is now starting"));
+				blockHunters.clearBlocks();
+			}
 		}
 		else
 		{

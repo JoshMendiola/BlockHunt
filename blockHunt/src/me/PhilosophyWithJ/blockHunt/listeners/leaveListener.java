@@ -12,6 +12,7 @@ import me.PhilosophyWithJosh.blockHunt.utils.utils;
 
 public class leaveListener implements Listener
 {
+@SuppressWarnings("unused")
 private Main plugin;
 	
 	public leaveListener(Main plugin)

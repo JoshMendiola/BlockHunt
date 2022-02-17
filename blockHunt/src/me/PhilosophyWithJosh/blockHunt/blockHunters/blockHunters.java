@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import me.PhilosophyWithJosh.blockHunt.*;
 public class blockHunters implements Listener
 {
 	
+	@SuppressWarnings("unused")
 	private Main plugin;
 	//array of all current players of blockhunters
 	private static ArrayList<Player> blockhunters = new ArrayList<Player>();
@@ -18,7 +18,6 @@ public class blockHunters implements Listener
 	private static ArrayList<Material> ranBlocks = new ArrayList<Material>();
 	//return success for each block player
 	private static ArrayList<Boolean> success = new ArrayList<Boolean>();
-	private static boolean isSafe = true;
 	
 	public blockHunters(Main plugin)
 	{
