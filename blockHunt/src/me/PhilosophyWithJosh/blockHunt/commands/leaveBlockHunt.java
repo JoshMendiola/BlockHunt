@@ -38,7 +38,6 @@ public class leaveBlockHunt implements CommandExecutor
 			}
 			else if(!blockHunters.isBlockHunter(p))
 			{
-				blockHunters.removePlayer(p);
 				p.sendMessage(utils.chat("&7You have to be a blockhunter to leave blockhunt"));
 				return true;
 			}
