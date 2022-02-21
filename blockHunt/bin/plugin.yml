@@ -1,0 +1,13 @@
+name: blockHunt
+author: PhilosophyWithJosh
+version: 1.6.0
+api-version: 1.16
+main: me.PhilosophyWithJosh.blockHunt.Main
+description: my take on dreams block hunt
+commands:
+  beblockhunter:
+    description: turns the user into a block hunter
+  leaveblockhunt:
+    description: leaves the blockhunt
+  startblockhunt:
+    description: starts the game

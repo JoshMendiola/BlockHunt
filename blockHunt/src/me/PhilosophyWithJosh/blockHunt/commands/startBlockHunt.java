@@ -12,6 +12,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
+import me.PhilosophyWithJosh.blockHunt.game.countdown;
 import me.PhilosophyWithJosh.blockHunt.game.gameRunner;
 import me.PhilosophyWithJosh.blockHunt.utils.utils;
 public class startBlockHunt implements CommandExecutor
@@ -48,8 +49,8 @@ public class startBlockHunt implements CommandExecutor
 			return false;
 		}
 		gamerunning = true;
-		setUp();
-		minigame = new gameRunner(this.plugin).runTaskTimer(plugin, 6000L, 6000L);
+		countdown.setSeconds(10);
+		BukkitTask countdown = new countdown(this.plugin).runTaskTimer(plugin, 20L, 20L);
 		return true;
 	}
 	public static void setUp()
