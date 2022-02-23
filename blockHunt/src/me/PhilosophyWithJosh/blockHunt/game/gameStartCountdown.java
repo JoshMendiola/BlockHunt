@@ -7,13 +7,13 @@ import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.commands.startBlockHunt;
 import me.PhilosophyWithJosh.blockHunt.utils.utils;
 
-public class countdown extends BukkitRunnable
+public class gameStartCountdown extends BukkitRunnable
 {
 	private static int seconds;
 	@SuppressWarnings("unused")
 	private Main plugin;
 	
-	public countdown(Main plugin)
+	public gameStartCountdown(Main plugin)
 	{
 		this.plugin = plugin;
 	}
@@ -24,10 +24,11 @@ public class countdown extends BukkitRunnable
 		 {
 			 startBlockHunt.setUp();
 			 startBlockHunt.minigame = new gameRunner(this.plugin).runTaskTimer(plugin, 6000L, 6000L);
-             cancel(); // Cancels the timer
+             cancel();
          }
 		 else 
          {
+			 startBlockHunt.setGameRunning(true);
              Bukkit.broadcastMessage(utils.chat("&e" + seconds + " second/s till the game starts"));
              seconds--;
          }
@@ -35,6 +36,6 @@ public class countdown extends BukkitRunnable
 	
 	public static void setSeconds(int seconds)
 	{
-		countdown.seconds = seconds;
+		gameStartCountdown.seconds = seconds;
 	}
 }

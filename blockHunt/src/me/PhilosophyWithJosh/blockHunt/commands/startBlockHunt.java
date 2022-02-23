@@ -12,7 +12,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
-import me.PhilosophyWithJosh.blockHunt.game.countdown;
+import me.PhilosophyWithJosh.blockHunt.game.gameStartCountdown;
 import me.PhilosophyWithJosh.blockHunt.game.gameRunner;
 import me.PhilosophyWithJosh.blockHunt.utils.utils;
 public class startBlockHunt implements CommandExecutor
@@ -48,9 +48,8 @@ public class startBlockHunt implements CommandExecutor
 			sender.sendMessage(utils.chat("&cERROR: &7Can not start game, as there are no blockhunters"));
 			return false;
 		}
-		gamerunning = true;
-		countdown.setSeconds(10);
-		BukkitTask countdown = new countdown(this.plugin).runTaskTimer(plugin, 0L, 20L);
+		gameStartCountdown.setSeconds(10);
+		BukkitTask countdown = new gameStartCountdown(this.plugin).runTaskTimer(plugin, 0L, 20L);
 		return true;
 	}
 	public static void setUp()

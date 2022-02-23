@@ -28,7 +28,7 @@ private Main plugin;
 	@EventHandler
 	public void check(PlayerMoveEvent e)
 	{	
-		if(startBlockHunt.gameRunning() && blockHunters.isBlockHunter(e.getPlayer()) && blockHunters.getSuccess(e.getPlayer()) == false)
+		if(startBlockHunt.gameRunning() && !blockHunters.blockHunterList().isEmpty() && blockHunters.isBlockHunter(e.getPlayer()) && blockHunters.getSuccess(e.getPlayer()) == false)
 		{
 			for(int x = 0; x < blockHunters.blockHunterList().size();x++)
 			{
