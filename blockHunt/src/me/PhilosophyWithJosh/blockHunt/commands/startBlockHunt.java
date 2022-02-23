@@ -49,7 +49,7 @@ public class startBlockHunt implements CommandExecutor
 			return false;
 		}
 		gameStartCountdown.setSeconds(10);
-		BukkitTask countdown = new gameStartCountdown(this.plugin).runTaskTimer(plugin, 0L, 20L);
+		BukkitTask startCountdown = new gameStartCountdown(this.plugin).runTaskTimer(plugin, 0L, 20L);
 		return true;
 	}
 	public static void setUp()

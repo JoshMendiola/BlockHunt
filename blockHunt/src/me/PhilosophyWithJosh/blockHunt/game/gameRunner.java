@@ -54,6 +54,7 @@ public class gameRunner extends BukkitRunnable
 			{
 				Bukkit.broadcastMessage(utils.chat("&eThe next round is now starting"));
 				blockHunters.clearBlocks();
+				BukkitTask gameCountdown = new gameEndCountdown(this.plugin).runTaskTimer(this.plugin, 0L, 20L);
 			}
 		}
 		else
