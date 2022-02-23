@@ -28,7 +28,7 @@ private Main plugin;
 	@EventHandler
 	public void check(PlayerMoveEvent e)
 	{	
-		if(!blockHunters.blockHunterList().isEmpty())
+		if(!blockHunters.blockHunterList().isEmpty() && startBlockHunt.minigame != null && !startBlockHunt.minigame.isCancelled())
 		{
 			if(startBlockHunt.gameRunning() && blockHunters.isBlockHunter(e.getPlayer()) && blockHunters.getSuccess(e.getPlayer()) == false)
 			{
