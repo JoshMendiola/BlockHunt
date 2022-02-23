@@ -13,6 +13,7 @@ public class gameStartCountdown extends BukkitRunnable
 	private static int seconds;
 	@SuppressWarnings("unused")
 	private Main plugin;
+	public static BukkitTask endCountDown;
 	
 	public gameStartCountdown(Main plugin)
 	{
@@ -25,7 +26,7 @@ public class gameStartCountdown extends BukkitRunnable
 		 {
 			 startBlockHunt.setUp();
 			 gameEndCountdown.setSeconds(299);
-			 BukkitTask endCountdown = new gameEndCountdown(this.plugin).runTaskTimer(plugin, 0L, 20L);
+			 endCountDown = new gameEndCountdown(this.plugin).runTaskTimer(plugin, 0L, 20L);
 			 startBlockHunt.minigame = new gameRunner(this.plugin).runTaskTimer(plugin, 6000L, 6000L);
              cancel();
          }

@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 
 import me.PhilosophyWithJosh.blockHunt.Main;
 import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
+import me.PhilosophyWithJosh.blockHunt.game.gameStartCountdown;
 import me.PhilosophyWithJosh.blockHunt.utils.utils;
 
 public class leaveBlockHunt implements CommandExecutor 
@@ -28,9 +29,10 @@ public class leaveBlockHunt implements CommandExecutor
 			{
 				blockHunters.removePlayer((Player)p);
 				p.sendMessage(utils.chat("&bYou are no longer a blockhunter"));
-				if(blockHunters.blockHunterList().isEmpty())
+				if(blockHunters.blockHunterList().isEmpty() && startBlockHunt.gameRunning())
 				{
 					startBlockHunt.minigame.cancel();
+					gameStartCountdown.endCountDown.cancel();
 					startBlockHunt.setGameRunning(false);
 					Bukkit.broadcastMessage(utils.chat("&cThe game has ended as there are no more players"));			
 				}

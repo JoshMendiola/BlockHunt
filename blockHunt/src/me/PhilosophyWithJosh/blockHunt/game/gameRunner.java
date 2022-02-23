@@ -43,6 +43,7 @@ public class gameRunner extends BukkitRunnable
 			{
 				Bukkit.broadcastMessage(utils.chat("&eThe game has ended as everyone failed"));
 				this.cancel();
+				gameStartCountdown.endCountDown.cancel();
 				startBlockHunt.setGameRunning(false);
 			}
 			else if(blockHunters.blockHunterList().size() == 1)
