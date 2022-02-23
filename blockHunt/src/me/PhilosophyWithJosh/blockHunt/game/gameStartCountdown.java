@@ -5,6 +5,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import me.PhilosophyWithJosh.blockHunt.Main;
+import me.PhilosophyWithJosh.blockHunt.blockHunters.blockHunters;
 import me.PhilosophyWithJosh.blockHunt.commands.startBlockHunt;
 import me.PhilosophyWithJosh.blockHunt.utils.utils;
 
@@ -30,6 +31,10 @@ public class gameStartCountdown extends BukkitRunnable
 			 startBlockHunt.minigame = new gameRunner(this.plugin).runTaskTimer(plugin, 6000L, 6000L);
              cancel();
          }
+		 else if(blockHunters.blockHunterList().isEmpty())
+		 {
+			 cancel();
+		 }
 		 else 
          {
 			 startBlockHunt.setGameRunning(true);
